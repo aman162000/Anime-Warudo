@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Home from "./components/Home";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import DetailPage from "./components/DetailPage";
+import SearchPage from "./components/SearchPage";
+import Modal from "./components/Modal/Modal";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar img={"/logo.png"} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/top/:type" element={<SearchPage/>}/>
+          <Route path="/search/:type/:name" element={<SearchPage />} />
+          <Route path="/details/:type/:id" element={<DetailPage />} />
+          <Route path="/test/modal/" element={<Modal />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </Router>
     </div>
   );
 }

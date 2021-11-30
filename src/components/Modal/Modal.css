@@ -1,0 +1,8 @@
+.modal--container {
+  display: none;
+  z-index: 999;
+  position: fixed;
+  margin: auto;
+  background-color: white;
+  width: 60%;
+}

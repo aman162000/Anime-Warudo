@@ -1,38 +1,205 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+} 
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #202020; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fa7d09;
+  border-radius: 5px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #df7410; 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
+}
+footer{
+  background-color: #292828;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: "Acme", sans-serif;
+  background-color: #161616;
+  color: #fa7d09;
+}
+
+.custom-card {
   display: flex;
   flex-direction: column;
+  margin-left: 12px;
+  position: relative;
+  width: 200px;
+  height: 300px;
+  transition: 300ms ease-in-out;
+  cursor: pointer;
+  border-radius: 8px;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+
+  color: inherit;
+  text-decoration: none;
+}
+.custom-card:hover .custom-card--content {
+  backdrop-filter: blur(2px);
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1);
+}
+
+.custom-card:hover .custom-card-image {
+  backdrop-filter: blur(2px);
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1);
+  transition: 300ms ease-in-out;
+}
+.custom-card--content {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  transition: 300ms ease-in-out;
+  opacity: 0;
+  width: 100%;
+  color: #e9e9e9;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.9);
+  border-radius: 8px;
+}
+
+.custom-card--content--title {
+  text-align: center;
+  color: #e9e9e9;
+  font-weight: bold;
+}
+
+.custom-card--content--details {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  outline: none;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  color: #e9e9e9;
+  border: 2px solid #e9e9e9;
+  border-radius: 15px;
+  transition: transform 300ms ease-in-out;
+  text-decoration: none;
+}
+
+.custom-card--content--details:hover {
+  transform: translateY(-3px);
+}
+
+.custom-card--content--footer {
+  text-align: center;
+  font-weight: bold;
+}
+.custom-card-image {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+
+  border-radius: 8px;
+
+  transform: scale(0.9);
+  transition: 300ms ease-in-out;
+}
+
+.main-img {
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+.slick-dots li.slick-active button:before,
+.slick-next::before,
+.slick-prev::before {
+  color: #fa7d09 !important;
+}
+.slick-dots li.slick-active button:after,
+.slick-next::before,
+.slick-prev::before {
+  color: #ffff !important;
+}
+
+.slick-dots li.slick-active button::after,
+.slick-next::before,
+.slick-prev::before {
+  color: #fa7d09 !important;
+}
+.slick-dots li button::before {
+  font-size: 6px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: "•";
+  text-align: center;
+  opacity: 0.25;
+  color: #fff !important;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+nav {
+  z-index: 1;
+  background-color: black !important;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 1) !important;
+}
+.search-bar {
+  font-size: 12pt;
+  height: 40px;
+  outline: none;
+  font-family: sans-serif;
+  border: 1px black;
+  background-color: #363535;
+  color: white;
+  padding-left: 15px;
+  border-radius: 50px;
+}
+.modal-backdrop {
+  z-index: -1;
+}
+
+.footer-list {
+  
+  font-family: 'Roboto',sans-serif;
+  list-style: none;
+}
+.footer-list > a{
+  text-decoration: none;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer-list > a:hover{
+  color: #fa7d09;
+  transition: 0.3s ease-in-out;
 }
