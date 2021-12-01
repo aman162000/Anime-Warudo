@@ -14,7 +14,7 @@ export default function SearchBar() {
 
   const handelOnKeyUp = (e) => {
     if (e.keyCode === 13 && query !== "") {
-      window.location.href = `/search/${type}/${query}`;
+      window.location.href = `#/search/${type}/${query}`;
     } else {
       return;
     }
