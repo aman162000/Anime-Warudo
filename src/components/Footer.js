@@ -42,7 +42,7 @@ export default function Footer() {
              <h4>Top Movie</h4>
              {movie.map((data)=>(
             <li class="footer-list" >
-                <a href={`/details/anime/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title}>{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
+                <a href={`#/details/anime/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title}>{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
              ))}
            
             </div>
@@ -50,21 +50,21 @@ export default function Footer() {
               <h4>Top Novels</h4>
               {novels.map((data)=>(
             <li class="footer-list">
-                <a href={`/details/manga/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title}>{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
+                <a href={`#/details/manga/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title}>{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
              ))}
             </div>
             <div className="col">
               <h4>Top Manhwa</h4>
               {manhwa.map((data)=>(
             <li class="footer-list">
-                <a href={`/details/manga/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title} >{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
+                <a href={`#/details/manga/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title} >{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
              ))}
             </div>
             <div className="col">
               <h4>Top Ova</h4>
               {ova.map((data)=>(
             <li class="footer-list">
-                <a href={`/details/anime/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title}>{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
+                <a href={`#/details/anime/${data.mal_id}`} target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" title={data.title}>{data.title.length > 20 ? data.title.slice(0,20)+"..." : data.title}</a></li>
              ))}</div>
           </div>
         </div>)}
