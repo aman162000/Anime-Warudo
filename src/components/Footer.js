@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState,useEffect } from 'react'
 import ApiManager from '../ApiManager'
 
@@ -10,30 +11,23 @@ export default function Footer() {
     const [ova, setOva] = useState(null)
     const [loading, setLoading] = useState(true);
     const apiManager = new ApiManager();
+
+    const fetchFooterData=()=>{
+      axios.all([apiManager.fetchTopMovie(), apiManager.fetchTopNovels(),
+        apiManager.fetchTopManhwa(),
+        apiManager.fetchTopOva() ]).then(
+        axios.spread((...resp)=>{
+          setMovie(resp[0].data.top.slice(0,10))
+          setNovel(resp[1].data.top.slice(0,10))
+          setManhwa(resp[2].data.top.slice(0,10))
+          setOva(resp[3].data.top.slice(0,10))
+          setLoading(false);
+        })
+      )
+    }
+
     useEffect(() => {
-       apiManager.fetchTopMovie().then((resp)=>{
-        setMovie(resp.data.top.slice(0,10))
-       }).catch(err=>{
-           console.log(err);
-       })
-       apiManager.fetchTopNovels().then((resp)=>{
-        setNovel(resp.data.top.slice(0,10))
-       
-       }).catch(err=>{
-           console.log(err);
-       })
-       apiManager.fetchTopManhwa().then((resp)=>{
-        setManhwa(resp.data.top.slice(0,10))
-        
-       }).catch(err=>{
-           console.log(err);
-       })
-       apiManager.fetchTopOva().then((resp)=>{
-        setOva(resp.data.top.slice(0,10))
-        setLoading(false)
-       }).catch(err=>{
-           console.log(err);
-       })
+      fetchFooterData();
     }, [])
 
     return (

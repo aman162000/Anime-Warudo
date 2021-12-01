@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ApiManager from "../ApiManager";
@@ -9,25 +10,22 @@ const DetailPage = () => {
   const [detail, setDetail] = useState([]);
   const [recommendation, setRecommendation] = useState([]);
   const apiManager = new ApiManager();
+  
+  const fetchData =()=>{
+    axios.all([apiManager
+      .fetchDetails(param),apiManager
+      .fetchRecommendation(param)]).then(
+      axios.spread((...resp)=>{
+        setDetail(resp[0].data);
+        setRecommendation(resp[1].data.recommendations);
+        setLoading(false);
+      })
+
+    )
+  }
+  
   useEffect(() => {
-    apiManager
-      .fetchDetails(param)
-      .then((resp) => {
-        setLoading(false);
-        setDetail(resp.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    apiManager
-      .fetchRecommendation(param)
-      .then((resp) => {
-        setLoading(false);
-        setRecommendation(resp.data.recommendations);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      fetchData();
   }, []);
 
   return (

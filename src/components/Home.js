@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Data from "./Data";
 import ApiManager from "../ApiManager";
 import Footer from "./Footer";
+import axios from "axios";
 
-const BASE_URL = "https://api.aniapi.com";
+
 
 const days = [
   "Sunday",
@@ -24,38 +25,23 @@ export default function Home() {
   const d = new Date();
   const apiManager = new ApiManager();
 
+  const fetchHomeData= async()=>{
+    await axios.all([apiManager.fetchTodayRelease(days[d.getDay()].toLowerCase()),
+    apiManager.fetchTopAiring(),
+    apiManager.fetchUpcomingAnime(),
+    apiManager.fetchTopManga()]).then(
+      axios.spread((...resp)=>{
+          setToday(resp[0].data[days[d.getDay()].toLowerCase()]);
+          setAiring(resp[1].data.top);
+          setUpcoming(resp[2].data.top);
+          setManga(resp[3].data.top);
+          setLoading(false)
+        })
+    )
+  }
+  
   useEffect(async () => {
-    apiManager
-      .fetchTodayRelease(days[d.getDay()].toLowerCase())
-      .then((resp) => {
-        setLoading(false);
-        setToday(resp.data[days[d.getDay()].toLowerCase()]);
-      })
-      .catch((err) => {});
-
-    apiManager
-      .fetchTopAiring()
-      .then((resp) => {
-        setLoading(false);
-        setAiring(resp.data.top);
-      })
-      .catch((err) => {});
-    apiManager
-      .fetchUpcomingAnime()
-      .then((resp) => {
-        setLoading(false);
-        setUpcoming(resp.data.top);
-      })
-      .catch((err) => {});
-
-    apiManager
-      .fetchTopManga()
-      .then((resp) => {
-        setLoading(false);
-        setManga(resp.data.top);
-      })
-      .catch((err) => {});
- 
+    fetchHomeData(); 
   }, []);
 
   return (
